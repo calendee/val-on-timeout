@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html ng-app="App">
+<head>
+
+    <title>Validation on Timeout Demo</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.min.js"></script>
+    <script src="../src/valOnTimeout.js"></script>
+    <script src="app.js"></script>
+    <link rel="stylesheet" href="http://cdn.foundation5.zurb.com/foundation.css">
+
+</head>
+
+<body ng-controller="ValidationController">
+
+    <nav class="top-bar">
+        <ul class="title-area">
+            <li class="name">
+                <h1><a href="#">AngularJS Validation On Timeout</a></h1>
+            </li>
+        </ul>
+    </nav>
+
+    <section class="panel">
+
+        <form name="testing">
+
+            <div class="row">
+                <div class="large-4 columns">
+                    <label>First Name</label>
+                    <input
+                            type="text"
+                            placeholder="Your First Name Please"
+                            name="givenName"
+                            ng-model="user.givenName"
+                            ng-minlength="10"
+                            ng-maxlength="100"
+                            ng-required="true"
+                            val-on-timeout
+                            typing-limit="1250"
+                            focus-limit="5000"
+                            blur-limit="500"
+                    />
+
+                    <small class="error" ng-show="testing.givenName.$error.minlength && testing.givenName.$timedout">We don't accept people with short names. Go big or go away.</small>
+                    <small class="error" ng-show="testing.givenName.$error.maxlength && testing.givenName.$timedout">That name is super long.  We don't like you.  Go away.</small>
+                    <small class="error" ng-show="testing.givenName.$error.required && testing.givenName.$timedout">People with no names don't exist.  Go away.</small>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="large-4 columns">
+                    <label>First Name</label>
+                    <input
+                            type="text"
+                            placeholder="Your First Name Please"
+                            name="familyName"
+                            ng-model="user.familyName"
+                            ng-minlength="10"
+                            ng-maxlength="100"
+                            ng-required="true"
+                            val-on-timeout
+                            typing-limit="1250"
+                            focus-limit="5000"
+                            blur-limit="500"
+                            />
+
+                    <small class="error" ng-show="testing.familyName.$error.minlength && testing.familyName.$timedout">Cool katz have long last names.  The more dashes the better.</small>
+                    <small class="error" ng-show="testing.familyName.$error.maxlength && testing.familyName.$timedout">We like long names, but ... seriously?</small>
+                    <small class="error" ng-show="testing.familyName.$error.required && testing.familyName.$timedout">People with no names don't exist.  Go away.</small>
+                </div>
+            </div>
+
+        </form>
+
+    </section>
+</body>
+</html>
