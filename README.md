@@ -78,8 +78,6 @@ The default focus timeout is 5000ms.  It can be configured by providing any valu
 
 ```
 
-```
-
 ### Detect When Field Blurred
 
 If a field loses focus, you can apply the timeout to display errors.
