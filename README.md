@@ -9,6 +9,14 @@ val-on-timeout improves the user experience for forms.  When the user has stoppe
 * Configurable timeout on focus
 * Configurable timeout on blur
 
+## Usage
+
+Simply include as a dependency in your module.
+
+```js
+angular.module('SuperAwesomeApp', ['calendee.valOnTimeout'])
+```
+
 ## Examples
 
 ### Detect When User Stops Typing
