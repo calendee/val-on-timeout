@@ -13,8 +13,8 @@
     "grunt-karma": "latest"
   },
   "name": "val-on-timeout",
-  "description": "val-on-timeout improves the user experience for forms.  When the user has stopped activity in a field, validation errors will be displayed.",
-  "version": "0.0.0",
+  "description": "AngularJS directive to improve the user experience for forms.  When the user has stopped activity in a field, validation errors can be displayed.",
+  "version": "0.0.1",
   "main": "Gruntfile.js",
   "directories": {
     "test": "test"
