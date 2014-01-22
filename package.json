@@ -24,14 +24,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/platanus/angular-validate.git"
+    "url": "https://github.com/calendee/val-on-timeout"
   },
   "authors": [
     "Justin Noel"
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/platanus/angular-validate/issues"
+    "url": "https://github.com/calendee/val-on-timeout/issues"
   },
-  "homepage": "https://github.com/platanus/angular-validate"
+  "homepage": "https://github.com/calendee/val-on-timeout"
 }
