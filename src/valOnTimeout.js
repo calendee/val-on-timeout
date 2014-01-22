@@ -11,9 +11,9 @@ angular.module('calendee.valOnTimeout',[]).
 
                 ctrl.$timedout = false;
 
-                if(attrs.typingLimit) typingLimit = parseInt(attrs.typingLimit, 10) || 1250;
-                if(attrs.focusLimit) focusLimit = parseInt(attrs.focusLimit, 10) || 5000;
-                if(attrs.blurLimit) blurLimit = parseInt(attrs.blurLimit, 10) || 500;
+                if(attrs.hasOwnProperty('typingLimit')) typingLimit = parseInt(attrs.typingLimit, 10) || 1250;
+                if(attrs.hasOwnProperty('focusLimit')) focusLimit = parseInt(attrs.focusLimit, 10) || 5000;
+                if(attrs.hasOwnProperty('blurLimit')) blurLimit = parseInt(attrs.blurLimit, 10) || 500;
 
 
                 /**
@@ -47,7 +47,7 @@ angular.module('calendee.valOnTimeout',[]).
                  * Will start a timer after focus event fired for field.
                  * Used to detect when field receives focus but typing never starts
                  */
-                if(attrs.focusLimit) {
+                if( attrs.hasOwnProperty('focusLimit')) {
 
                     elem.bind('focus', function(){
 
@@ -66,7 +66,7 @@ angular.module('calendee.valOnTimeout',[]).
                 /**
                  * Will start a timer after blur event fired for field
                  */
-                if(attrs.blurLimit) {
+                if( attrs.hasOwnProperty('blurLimit')) {
 
                     elem.bind('blur', function(){
 
