@@ -23,6 +23,11 @@ describe('', function() {
         $(inputEl).trigger(e);
     };
 
+    var triggerFocus = function (element) {
+        var inputEl = findInput(element);
+        $(inputEl).triggerHandler( "focus" );
+    };
+
     var prepareInputEl = function (inputTpl) {
         var el = $compile(angular.element(inputTpl))($scope);
         $scope.$digest();
@@ -84,6 +89,147 @@ describe('', function() {
             });
 
         });
+
+        it('should add "timedout" to field after custom typing timeout', function(done) {
+
+            var customTypingLimit = 500;
+
+            runs(function() {
+                // Will be checked by waitsFor to ensure tests aren't checked until after a timeout
+                flag = false;
+
+                var element = prepareInputEl(
+                    '<form name="testform"><input name="testfield" ng-model="testModel" type="text" ng-minlength="5" ng-maxlength="50" ng-required="true" val-on-timeout typing-limit="500"/></form></div>'
+                );
+
+                // Put a value in field for later testing
+                $scope.testform.testfield.$setViewValue('b');
+
+                // Fire a keydown event in the field
+                triggerKeyDown(element, 65);
+
+                // Wait a few ms longer than default typing limit
+                setTimeout(function() {
+                    // Tell waitsFor to stop waiting
+                    flag = true;
+                }, customTypingLimit + 25);
+            });
+
+            // Jasmine async test, will wait up to 2500ms.
+            waitsFor(function() {
+
+                try {
+                    // Only way to get $timeout in directive to fire
+                    $timeout.flush();
+                } catch(e) {
+                    // Ignore these errors
+                }
+
+                return flag;
+            }, "The field should have timed out by now", customTypingLimit + 100);
+
+            runs(function() {
+                expect($scope.testform.testfield.$viewValue).toEqual('b');
+                expect($scope.testform.testfield.$valid).toEqual(false);
+                expect($scope.testform.testfield.$timedout).toEqual(true);
+            });
+
+        });
+
+        it('should add "timedout" to field after received focus default limit and no further typing', function(done) {
+
+            runs(function() {
+                // Will be checked by waitsFor to ensure tests aren't checked until after a timeout
+                flag = false;
+
+                var element = prepareInputEl(
+                    '<form name="testform"><input name="testfield" ng-model="testModel" type="text" ng-minlength="5" ng-maxlength="50" required="true" val-on-timeout focus-limit/></form></div>'
+                );
+
+                // Fire a focus event in the field
+                triggerFocus(element);
+
+                // Wait a few ms longer than default typing limit
+                setTimeout(function() {
+                    // Tell waitsFor to stop waiting
+                    flag = true;
+                }, defaultFocusTimeout + 50);
+            });
+
+            // Jasmine async test
+            waitsFor(function() {
+
+                try {
+                    // Only way to get $timeout in directive to fire
+                    $timeout.flush();
+                } catch(e) {
+                    // Ignore these errors
+                }
+
+                return flag;
+            }, "The field should have timed out by now", defaultFocusTimeout + 100);
+
+            runs(function() {
+                // Nothing has been typed in the field
+                expect($scope.testform.testfield.$viewValue).toEqual(undefined);
+
+                // The field does not meet requirements
+                expect($scope.testform.testfield.$valid).toEqual(false);
+
+                // It should have 'timedout' due to focus limit exceeded
+                expect($scope.testform.testfield.$timedout).toEqual(true);
+            });
+
+        });
+
+        it('should add "timedout" to field after received focus custom limit and no further typing', function(done) {
+
+            var customFocusLimit = 500;
+
+            runs(function() {
+                // Will be checked by waitsFor to ensure tests aren't checked until after a timeout
+                flag = false;
+
+                var element = prepareInputEl(
+                    '<form name="testform"><input name="testfield" ng-model="testModel" type="text" ng-minlength="5" ng-maxlength="50" required="true" val-on-timeout focus-limit="500"/></form></div>'
+                );
+
+                // Fire a focus event in the field
+                triggerFocus(element);
+
+                // Wait a few ms longer than default typing limit
+                setTimeout(function() {
+                    // Tell waitsFor to stop waiting
+                    flag = true;
+                }, customFocusLimit + 50);
+            });
+
+            // Jasmine async test
+            waitsFor(function() {
+
+                try {
+                    // Only way to get $timeout in directive to fire
+                    $timeout.flush();
+                } catch(e) {
+                    // Ignore these errors
+                }
+
+                return flag;
+            }, "The field should have timed out by now", customFocusLimit + 100);
+
+            runs(function() {
+                // Nothing has been typed in the field
+                expect($scope.testform.testfield.$viewValue).toEqual(undefined);
+
+                // The field does not meet requirements
+                expect($scope.testform.testfield.$valid).toEqual(false);
+
+                // It should have 'timedout' due to focus limit exceeded
+                expect($scope.testform.testfield.$timedout).toEqual(true);
+            });
+
+        });
+
 
     });
 
