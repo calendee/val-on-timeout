@@ -112,6 +112,15 @@ The default focus timeout is 500ms.  It can be configured by providing any value
 
 ```
 
+## Demo
+To run a demo, start a local Python server from the repository's root directory :
+
+```
+python -m SimpleHTTPServer 3001
+```
+
+Then, go to : http://localhost:3001/example/
+
 ## Testing
 From the project root directory, run `karma start`.
 
