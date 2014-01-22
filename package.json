@@ -1,0 +1,37 @@
+{
+  "engines": {
+    "node": ">= 0.9"
+  },
+  "dependencies": {
+    "angular": "~1.2.7"
+  },
+  "devDependencies": {
+    "grunt-cli": ">= 0.1.7",
+    "grunt-contrib-concat": "*",
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-karma": "latest"
+  },
+  "name": "val-on-timeout",
+  "description": "val-on-timeout improves the user experience for forms.  When the user has stopped activity in a field, validation errors will be displayed.",
+  "version": "0.0.0",
+  "main": "Gruntfile.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/platanus/angular-validate.git"
+  },
+  "authors": [
+    "Justin Noel"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/platanus/angular-validate/issues"
+  },
+  "homepage": "https://github.com/platanus/angular-validate"
+}
