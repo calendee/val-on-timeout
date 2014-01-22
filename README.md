@@ -123,7 +123,8 @@ From the project root directory, run `karma start`.
 + <https://github.com/calendee>
 
 ## Acknowledgements
-Thanks for Ari Lerner (@auser) for the inspiration for this directive.  His ngFocus directive lead the way.
+Thanks to Ari Lerner (@auser) for the inspiration for this directive.  His ngFocus directive lead the way.
+
 I whined about my complaints with Angular JS validation to Sharon DiOrio (@sharondio) while at #ng-conf.  She didn't take pity and suggested I do something about it.  Thanks for the push.
 
 ## LICENSE
